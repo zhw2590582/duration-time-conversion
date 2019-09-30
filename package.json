@@ -1,6 +1,6 @@
 {
   "name": "duration-time-conversion",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Duration and time format conversion",
   "main": "index.js",
   "scripts": {
@@ -10,9 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/zhw2590582/duration-time.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "duration",
+    "time",
+    "conversion"
+  ],
+  "author": "Harvey Zack <laozhaochaguan@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/zhw2590582/duration-time/issues"
   },

@@ -31,7 +31,7 @@
     t2d: function(time) {
       if (checkTime(time)) {
         var arr = time.split(".")[0].split(":");
-        var ms = Number(time.split(".")[1]) / 1000;
+        var ms = Number(time.split(".")[1] || 0) / 1000;
         var h = Number(arr[0]) * 3600;
         var m = Number(arr[1]) * 60;
         var s = Number(arr[2]);
