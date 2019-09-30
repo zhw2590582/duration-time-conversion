@@ -14,25 +14,15 @@
     return /^(\d+)(\.\d{1,3})?$/.test(duration);
   }
 
-  function fixMs(ms) {
-    ms = String(ms);
-    if (ms.length === 1) {
-      return Number(ms + "00");
-    } else if (ms.length === 2) {
-      return Number(ms + "0");
-    } else {
-      return Number(ms);
-    }
-  }
-
   return {
     d2t: function(duration) {
       if (checkDuration(duration)) {
-        const date = new Date(null);
-        const s = Number(String(duration).split(".")[0]) || 0;
-        const ms = Number(String(duration).split(".")[1]) || 0;
-        date.setSeconds(s);
-        date.setMilliseconds(ms.padEnd(3, 0));
+        var date = new Date(null);
+        var arr = String(duration).split(".");
+        var s = arr[0];
+        var ms = arr[1] ? arr[1].padEnd(3, 0) : 0;
+        date.setSeconds(Number(s));
+        date.setMilliseconds(Number(ms));
         return date.toISOString().substr(11, 12);
       } else {
         throw new Error("The format of the duration is incorrect: " + duration);
