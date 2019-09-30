@@ -1,0 +1,20 @@
+{
+  "name": "duration-time",
+  "version": "1.0.0",
+  "description": "Duration and time format conversion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhw2590582/duration-time.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhw2590582/duration-time/issues"
+  },
+  "homepage": "https://github.com/zhw2590582/duration-time#readme"
+}
