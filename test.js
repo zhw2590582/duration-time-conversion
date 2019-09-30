@@ -1,0 +1,1 @@
+const DT = require('./index');

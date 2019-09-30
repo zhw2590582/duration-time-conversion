@@ -32,7 +32,7 @@
         const s = Number(String(duration).split(".")[0]) || 0;
         const ms = Number(String(duration).split(".")[1]) || 0;
         date.setSeconds(s);
-        date.setMilliseconds(fixMs(ms));
+        date.setMilliseconds(ms.padEnd(3, 0));
         return date.toISOString().substr(11, 12);
       } else {
         throw new Error("The format of the duration is incorrect: " + duration);
@@ -40,7 +40,12 @@
     },
     t2d: function(time) {
       if (checkTime(time)) {
-        //
+        var arr = time.split(".")[0].split(":");
+        var ms = Number(time.split(".")[1]) / 1000;
+        var h = Number(arr[0]) * 3600;
+        var m = Number(arr[1]) * 60;
+        var s = Number(arr[2]);
+        return h + m + s + ms;
       } else {
         throw new Error("The format of the time is incorrect: " + time);
       }
