@@ -35,7 +35,7 @@ Will expose the global variable to `window.DT`.
 DT.d2t(3661.111) === "01:01:01.111";
 
 // Time to Duration
-DT.d2t("01:01:01.111") === 3661.111;
+DT.t2d("01:01:01.111") === 3661.111;
 ```
 
 ## License
