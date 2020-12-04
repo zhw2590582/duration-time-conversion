@@ -1,10 +1,26 @@
-(function(global, factory) {
+if (!String.prototype.padEnd) {
+  String.prototype.padEnd = function padEnd(targetLength, padString) {
+    targetLength = targetLength >> 0;
+    padString = String(typeof padString !== "undefined" ? padString : "");
+    if (this.length > targetLength) {
+      return String(this);
+    } else {
+      targetLength = targetLength - this.length;
+      if (targetLength > padString.length) {
+        padString += padString.repeat(targetLength / padString.length);
+      }
+      return String(this) + padString.slice(0, targetLength);
+    }
+  };
+}
+
+(function (global, factory) {
   typeof exports === "object" && typeof module !== "undefined"
     ? (module.exports = factory())
     : typeof define === "function" && define.amd
     ? define(factory)
     : ((global = global || self), (global.DT = factory()));
-})(this, function() {
+})(this, function () {
   function checkTime(time) {
     return /^(\d+):([0-5][0-9]):([0-5][0-9])(\.\d{3})?$/.test(time);
   }
@@ -15,7 +31,7 @@
   }
 
   return {
-    d2t: function(duration) {
+    d2t: function (duration) {
       if (checkDuration(duration)) {
         var date = new Date(null);
         var arr = String(duration).split(".");
@@ -28,7 +44,7 @@
         throw new Error("The format of the duration is incorrect: " + duration);
       }
     },
-    t2d: function(time) {
+    t2d: function (time) {
       if (checkTime(time)) {
         var arr = time.split(".")[0].split(":");
         var ms = Number(time.split(".")[1] || 0) / 1000;
@@ -39,6 +55,6 @@
       } else {
         throw new Error("The format of the time is incorrect: " + time);
       }
-    }
+    },
   };
 });
