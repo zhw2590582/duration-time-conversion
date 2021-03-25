@@ -1,7 +1,11 @@
 const assert = require('assert');
 const DT = require('./index');
 
+assert.strictEqual(DT.d2t(0), '00:00:00.000');
+assert.strictEqual(DT.d2t(0.1), '00:00:00.100');
+assert.strictEqual(DT.d2t(0.01), '00:00:00.010');
 assert.strictEqual(DT.d2t(0.001), '00:00:00.001');
+
 assert.strictEqual(DT.d2t(0.011), '00:00:00.011');
 assert.strictEqual(DT.d2t(0.111), '00:00:00.111');
 assert.strictEqual(DT.d2t(0.100), '00:00:00.100');
@@ -23,6 +27,10 @@ assert.strictEqual(DT.d2t(3661.100), '01:01:01.100');
 assert.strictEqual(DT.d2t(3661.110), '01:01:01.110');
 assert.strictEqual(DT.d2t(3661.111), '01:01:01.111');
 
+assert.strictEqual(DT.t2d('00:00:00'), 0);
+assert.strictEqual(DT.t2d('00:00:00.1'), 0.1);
+assert.strictEqual(DT.t2d('00:00:00.01'), 0.01);
+assert.strictEqual(DT.t2d('00:00:00.001'), 0.001);
 assert.strictEqual(DT.t2d('00:00:00.001'), 0.001);
 assert.strictEqual(DT.t2d('00:00:00.011'), 0.011);
 assert.strictEqual(DT.t2d('00:00:00.111'), 0.111);

@@ -1,19 +1,3 @@
-if (!String.prototype.padEnd) {
-  String.prototype.padEnd = function padEnd(targetLength, padString) {
-    targetLength = targetLength >> 0;
-    padString = String(typeof padString !== "undefined" ? padString : "");
-    if (this.length > targetLength) {
-      return String(this);
-    } else {
-      targetLength = targetLength - this.length;
-      if (targetLength > padString.length) {
-        padString += padString.repeat(targetLength / padString.length);
-      }
-      return String(this) + padString.slice(0, targetLength);
-    }
-  };
-}
-
 (function (global, factory) {
   typeof exports === "object" && typeof module !== "undefined"
     ? (module.exports = factory())
@@ -22,12 +6,24 @@ if (!String.prototype.padEnd) {
     : ((global = global || self), (global.DT = factory()));
 })(this, function () {
   function checkTime(time) {
-    return /^(\d+):([0-5][0-9]):([0-5][0-9])(\.\d{3})?$/.test(time);
+    return /^(\d+):([0-5][0-9]):([0-5][0-9])(\.\d{1,3})?$/.test(time);
   }
 
   function checkDuration(duration) {
     duration = String(duration);
     return /^(\d+)(\.\d{1,3})?$/.test(duration);
+  }
+
+  function padEnd(str, targetLength, padString) {
+    if (str.length > targetLength) {
+      return String(str);
+    } else {
+      targetLength = targetLength - str.length;
+      if (targetLength > padString.length) {
+        padString += padString.repeat(targetLength / padString.length);
+      }
+      return String(str) + padString.slice(0, targetLength);
+    }
   }
 
   return {
@@ -36,7 +32,7 @@ if (!String.prototype.padEnd) {
         var date = new Date(null);
         var arr = String(duration).split(".");
         var s = arr[0];
-        var ms = arr[1] ? arr[1].padEnd(3, 0) : 0;
+        var ms = arr[1] ? padEnd(arr[1], 3, "0") : 0;
         date.setSeconds(Number(s));
         date.setMilliseconds(Number(ms));
         return date.toISOString().substr(11, 12);
@@ -46,11 +42,14 @@ if (!String.prototype.padEnd) {
     },
     t2d: function (time) {
       if (checkTime(time)) {
-        var arr = time.split(".")[0].split(":");
-        var ms = Number(time.split(".")[1] || 0) / 1000;
-        var h = Number(arr[0]) * 3600;
-        var m = Number(arr[1]) * 60;
-        var s = Number(arr[2]);
+        var arr = time.split(".");
+        var left = arr[0].split(":") || [];
+        var right = padEnd(arr[1] || "0", 3, "0");
+        var ms = Number(right) / 1000;
+
+        var h = Number(left[left.length - 3] || 0) * 3600;
+        var m = Number(left[left.length - 2] || 0) * 60;
+        var s = Number(left[left.length - 1] || 0);
         return h + m + s + ms;
       } else {
         throw new Error("The format of the time is incorrect: " + time);

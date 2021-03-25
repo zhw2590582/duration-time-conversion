@@ -1,6 +1,6 @@
 {
   "name": "duration-time-conversion",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Duration and time format conversion",
   "main": "index.js",
   "scripts": {
