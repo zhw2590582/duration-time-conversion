@@ -27,8 +27,8 @@
   }
 
   return {
-    d2t: function (duration = 0) {
-      duration = parseFloat(duration.toFixed(3));
+    d2t: function (duration) {
+      duration = parseFloat(Number(duration).toFixed(3));
       if (checkDuration(duration)) {
         var date = new Date(null);
         var arr = String(duration).split(".");
