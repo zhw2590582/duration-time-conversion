@@ -5,6 +5,8 @@ assert.strictEqual(DT.d2t(0), '00:00:00.000');
 assert.strictEqual(DT.d2t(0.1), '00:00:00.100');
 assert.strictEqual(DT.d2t(0.01), '00:00:00.010');
 assert.strictEqual(DT.d2t(0.001), '00:00:00.001');
+assert.strictEqual(DT.d2t(0.0001), '00:00:00.000');
+assert.strictEqual(DT.d2t(0.00001), '00:00:00.000');
 
 assert.strictEqual(DT.d2t(0.011), '00:00:00.011');
 assert.strictEqual(DT.d2t(0.111), '00:00:00.111');
