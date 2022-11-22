@@ -57,3 +57,7 @@ assert.strictEqual(DT.t2d('01:01:01.111'), 3661.111);
 
 assert.strictEqual(DT.d2t(3661), '01:01:01.000');
 assert.strictEqual(DT.t2d('01:01:01'), 3661.000);
+
+assert.strictEqual(DT.t2d('01'), 1.000);
+assert.strictEqual(DT.t2d('01:01'), 61.000);
+assert.strictEqual(DT.t2d('01:01:01'), 3661.000);

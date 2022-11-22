@@ -6,7 +6,7 @@
     : ((global = global || self), (global.DT = factory()));
 })(this, function () {
   function checkTime(time) {
-    return /^(\d+):([0-5][0-9]):([0-5][0-9])(\.\d{1,3})?$/.test(time);
+    return /^(\d+:)?([0-5][0-9]:)?([0-5][0-9])(\.\d{1,3})?$/.test(time);
   }
 
   function checkDuration(duration) {
