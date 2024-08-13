@@ -2,9 +2,10 @@
   typeof exports === "object" && typeof module !== "undefined"
     ? (module.exports = factory())
     : typeof define === "function" && define.amd
-    ? define(factory)
-    : ((global = global || self), (global.DT = factory()));
+      ? define(factory)
+      : ((global = global || self), (global.DT = factory()));
 })(this, function () {
+
   function checkTime(time) {
     return /^(\d+:)?([0-5][0-9]:)?([0-5][0-9])(\.\d{1,3})?$/.test(time);
   }
@@ -36,7 +37,7 @@
         var ms = arr[1] ? padEnd(arr[1], 3, "0") : 0;
         date.setSeconds(Number(s));
         date.setMilliseconds(Number(ms));
-        return date.toISOString().substr(11, 12);
+        return date.toISOString().substring(11, 22);
       } else {
         throw new Error("The format of the duration is incorrect: " + duration);
       }
